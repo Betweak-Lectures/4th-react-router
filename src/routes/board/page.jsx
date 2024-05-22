@@ -1,7 +1,12 @@
-import MyNavbar from "~/components/MyNavbar/MyNavbar";
-import MyFooter from "~/components/MyFooter/MyFooter";
+// import MyNavbar from "~/components/MyNavbar/MyNavbar";
+// import MyFooter from "~/components/MyFooter/MyFooter";
+
+import { useLocation } from "react-router-dom";
 
 export default function BoardPage() {
+  const location = useLocation();
+  console.log(location);
+
   return (
     <div>
       {/* <MyNavbar brandTitle="My Board" /> */}
