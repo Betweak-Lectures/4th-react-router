@@ -1,13 +1,17 @@
 import MyNavbar from "~/components/MyNavbar/MyNavbar";
 import MyFooter from "~/components/MyFooter/MyFooter";
+import { Container } from "react-bootstrap";
 
-export default function BoardPage() {
+import { Outlet } from "react-router-dom";
+
+export default function BoardLayout() {
   return (
-    <div>
+    <>
       <MyNavbar brandTitle="My Board" />
-      <h1>BoardList</h1>
-      <p>boardPage</p>
+      <Container>
+        <Outlet />
+      </Container>
       <MyFooter brandTitle="My Board" />
-    </div>
+    </>
   );
 }
