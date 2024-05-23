@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getBoardList } from "~/lib/apis/board";
+import ListGroup from "react-bootstrap/ListGroup";
 
 export default function BoardPage() {
   const [boardList, setBoardList] = useState([]);
@@ -38,11 +39,17 @@ export default function BoardPage() {
       </div> */}
 
       <h1>BoardList</h1>
-      <ul>
+      <ListGroup>
         {boardList.map((board) => (
-          <li key={board._id}>{board.title}</li>
+          <Link
+            to={`/board/${board._id}`}
+            key={board._id}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListGroup.Item action>{board.title}</ListGroup.Item>
+          </Link>
         ))}
-      </ul>
+      </ListGroup>
       {/* <MyFooter brandTitle="My Board" /> */}
     </div>
   );
