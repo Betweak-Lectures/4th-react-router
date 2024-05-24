@@ -22,17 +22,22 @@ export default function BoardPage() {
   return (
     <div>
       <h1>BoardList</h1>
-      <ListGroup>
-        {boardList.map((board) => (
-          <Link
-            to={`/board/${board._id}`}
-            key={board._id}
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <ListGroup.Item action>{board.title}</ListGroup.Item>
-          </Link>
-        ))}
-      </ListGroup>
+      {loading === "pending" && <div>로딩중...</div>}
+      {loading === "fulfilled" && (
+        <ListGroup>
+          {boardList.map((board) => (
+            <Link
+              to={`/board/${board._id}`}
+              key={board._id}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListGroup.Item action>{board.title}</ListGroup.Item>
+            </Link>
+          ))}
+        </ListGroup>
+      )}
+      {loading === "rejected" && <div>에러 발생</div>}
+
       {/* <MyFooter brandTitle="My Board" /> */}
     </div>
   );
