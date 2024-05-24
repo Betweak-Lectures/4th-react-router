@@ -7,6 +7,9 @@ import {
   Link,
 } from "react-router-dom";
 
+import { Provider } from "react-redux";
+import store from "./store";
+
 function renderRoutes(routesObj) {
   return routesObj.map((route) => {
     if (route.children) {
@@ -59,7 +62,11 @@ function App() {
   //     </>
   //   </BrowserRouter>
   // );
-  return <RouterProvider router={MainRouter}></RouterProvider>;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={MainRouter}></RouterProvider>
+    </Provider>
+  );
 }
 
 export default App;

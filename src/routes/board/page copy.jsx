@@ -2,25 +2,42 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getBoardList } from "~/lib/apis/board";
 import ListGroup from "react-bootstrap/ListGroup";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBoardList } from "~/store/reducers/board";
 
 export default function BoardPage() {
+  const [boardList, setBoardList] = useState([]);
+  // const location = useLocation();
+  // console.log(location);
+
   // useNavigate: navigate함수를 사용할 수 있게 함.
   // navigate: 페이지 이동 함수
   const navigate = useNavigate();
-  const { boards: boardList, loading } = useSelector((state) => state.board);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    const action = fetchBoardList();
-    console.log("action", action);
-    dispatch(action);
-  }, [dispatch]);
+    getBoardList().then((data) => {
+      setBoardList(data);
+    });
+  }, []);
 
   return (
     <div>
+      {/* <MyNavbar brandTitle="My Board" /> */}
+      {/* <Link to="/board/13">13번 게시글</Link>
+
+      <div
+        onClick={() => {
+          navigate("/board/10");
+        }}
+      >
+        10번 게시글로 이동.
+      </div> */}
+      {/* <div
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        뒤로가기
+      </div> */}
+
       <h1>BoardList</h1>
       <ListGroup>
         {boardList.map((board) => (

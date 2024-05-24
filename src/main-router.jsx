@@ -5,7 +5,19 @@ import BoardWritePage from "~/routes/board/write/page";
 
 import BoardLayout from "~/routes/board/layout";
 import BoardDetailPage from "~/routes/board/detail/page";
+
+import CounterPage from "~/routes/counter/page";
+import TodoPage from "~/routes/todo/page";
+
 export const routerObj = [
+  {
+    path: "/todo",
+    element: <TodoPage />,
+  },
+  {
+    path: "/counter",
+    element: <CounterPage />,
+  },
   {
     path: "/",
     element: <MainPage />,
