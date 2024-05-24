@@ -3,7 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getBoardList } from "~/lib/apis/board";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBoardList } from "~/store/reducers/board";
+import {
+  fetchBoardList,
+  thunkBoardActionCreator,
+} from "~/store/reducers/board";
 
 export default function BoardPage() {
   // useNavigate: navigate함수를 사용할 수 있게 함.
@@ -14,7 +17,9 @@ export default function BoardPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const action = fetchBoardList();
+    // const action = fetchBoardList();
+    // 위와 아래는 같습니다.
+    const action = thunkBoardActionCreator();
     console.log("action", action);
     dispatch(action);
   }, [dispatch]);

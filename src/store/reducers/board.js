@@ -29,27 +29,26 @@ const fetchBoardById = createAsyncThunk(
 // fetchBoardById.rejected
 
 // // thunk
-// function thunkBoardActionCreator(payload) {
-//   return async function (dispatch, getState) {
-//     dispatch({
-//       type: "board/fetchBoardList/pending",
-//     });
-//     try {
-//       const data = await getBoardList();
-//       dispatch({
-//         type: "board/fetchBoardList/fulfilled",
-//         payload: data,
-//       });
-//     } catch (error) {
-//       dispatch({
-//         type: "board/fetchBoardList/rejected",
-//         payload: error,
-//       });
-//     }
-//   };
-// }
+export function thunkBoardActionCreator(args) {
+  return async function (dispatch, getState) {
+    dispatch({
+      type: "board/fetchBoardList/pending",
+    });
+    try {
+      const data = await getBoardList(args);
+      dispatch({
+        type: "board/fetchBoardList/fulfilled",
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "board/fetchBoardList/rejected",
+        payload: error,
+      });
+    }
+  };
+}
 // const action = thunkBoardActionCreator();
-// dispatch(action);
 
 // api를 호출 예정.
 console.log(fetchBoardList.pending.type);
@@ -61,6 +60,9 @@ const boardSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
+    // builder.addCase("board/fetchBoardList/pending", (state, action) => {
+    //   state.loading = "pending";
+    // });
     builder.addCase(fetchBoardList.pending, (state, action) => {
       state.loading = "pending";
     });
